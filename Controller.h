@@ -19,16 +19,22 @@ public:
     bool convert_to_csv(const QStringList& selected_names) const;
     bool convert_to_db(const QStringList& selected_names) const;
 
+    QStringList get_all_table_names() const;
+
+    void clear();
+
+    bool data_was_load;
+
 signals:
 
 public slots:
 
 private:
-    QList<QSqlTableModel*> models;
+    QList<QAbstractTableModel*> models;
+    QStringList table_names;
     QList<QTableView*> views;
     QTabWidget* tab_widget;
     QSqlDatabase* db;
-    bool data_was_load;
 
     QStringList parse_csv_string(const QString& row);
 };

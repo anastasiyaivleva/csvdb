@@ -26,11 +26,13 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    Controller.cpp
+    Controller.cpp \
+    CsvTableModel.cpp
 
 HEADERS += \
         mainwindow.h \
-    Controller.h
+    Controller.h \
+    CsvTableModel.h
 
 FORMS += \
         mainwindow.ui

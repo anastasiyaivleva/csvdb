@@ -17,15 +17,15 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_button_read_csv_clicked();
+    void button_read_csv_clicked();
 
-    void on_button_read_db_clicked();
+    void button_read_db_clicked();
 
-    void on_button_to_csv_clicked();
+    void button_to_csv_clicked();
 
-    void on_button_to_db_clicked();
+    void button_to_db_clicked();
 
-    void on_button_settings_clicked();
+    void button_settings_clicked();
 
 private:
     Ui::MainWindow *ui;
