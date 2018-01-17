@@ -3,15 +3,7 @@
 
 //#include <QAbstractTableModel>
 
-//enum ElementType
-//{
-//    INTEGER = 0,
-//    REAL = 1,
-//    TEXT = 2
-//};
 
-//ElementType get_type(QString val);
-//QString getTypeString(ElementType type);
 
 
 

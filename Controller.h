@@ -4,9 +4,19 @@
 #include <QObject>
 #include <QtSql/QSqlTableModel>
 #include <QTableView>
-#include <QtSql/QSqlDatabase>
 #include <QString>
 #include <QStringList>
+
+enum ElementType
+{
+    INTEGER = 0,
+    REAL = 1,
+    TEXT = 2
+};
+
+ElementType get_type(QString val);
+QString get_type_string(ElementType type);
+
 
 class Controller : public QObject
 {
@@ -30,13 +40,39 @@ signals:
 public slots:
 
 private:
-    QList<QAbstractTableModel*> models;
-    QStringList table_names;
-    QList<QTableView*> views;
     QTabWidget* tab_widget;
-    QSqlDatabase* db;
+
+    QStringList table_names;
+
+    QList<QAbstractTableModel*> models;
+    QList<QTableView*> views;
+
+    QVector<QVector<ElementType>> column_types;
 
     QStringList parse_csv_string(const QString& row);
+
+    QVector<ElementType> get_column_types_of_model(const QAbstractTableModel* model);
 };
 
 #endif // CONTROLLER_H
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

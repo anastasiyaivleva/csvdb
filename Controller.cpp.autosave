@@ -182,6 +182,7 @@ bool Controller::convert_to_db(const QStringList &selected_names) const
                 qDebug(qPrintable(query.lastError().text()));
                 return false;
             }
+            
 
             for (int i = 0; i < models[model_num]->rowCount(); ++i)
             {
@@ -210,6 +211,7 @@ bool Controller::convert_to_db(const QStringList &selected_names) const
             }
         }
     }
+    
     db.close();
     return true;
 }
