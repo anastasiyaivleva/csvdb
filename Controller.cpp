@@ -5,6 +5,7 @@
 #include <QSqlRecord>
 #include <QSqlQuery>
 #include <QSqlError>
+#include <QTextStream>
 
 #include <QDebug>
 
@@ -137,6 +138,43 @@ bool Controller::read_db(const QString &db_name)
 
 bool Controller::convert_to_csv(const QStringList &selected_names) const
 {
+    for (int model_num=0; model_num<models.count(); ++model_num)
+    {
+        if (selected_names.indexOf(table_names[model_num]) >= 0)
+        {
+            QFile file("./"+table_names[model_num]+".csv");
+
+            if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
+                return false;
+
+            QTextStream fout(&file);
+
+            for (int i=0; i<models[model_num]->rowCount(); ++i)
+            {
+                for (int j=0; j<models[model_num]->columnCount()-1; ++j)
+                {
+                    QString cell = models[model_num]->index(i, j).data().toString();
+
+                    if (cell.indexOf(',') >= 0)
+                    {
+                        cell = "\""+cell+"\"";
+                    }
+
+                    fout << cell << ",";
+                }
+
+                QString cell = models[model_num]->index(i, models[model_num]->columnCount()-1).data().toString();
+
+                if (cell.indexOf(',') >= 0)
+                {
+                    cell = "\""+cell+"\"";
+                }
+
+                fout << cell << "\n";
+            }
+            file.close();
+        }
+    }
     return true;
 }
 
@@ -210,6 +248,7 @@ bool Controller::convert_to_db(const QStringList &selected_names) const
             }
         }
     }
+
     db.close();
     return true;
 }
