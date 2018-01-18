@@ -97,6 +97,8 @@ bool Controller::read_csv(const QStringList &file_names)
         QTableView* view = new QTableView();
         view->setModel(model);
         view->setAlternatingRowColors(true);
+        view->setWordWrap(true);
+        view->resizeRowsToContents();
 
         tab_widget->addTab(view, table_names[i]);
     }
