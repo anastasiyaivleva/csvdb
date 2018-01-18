@@ -6,6 +6,8 @@
 #include <QSqlQuery>
 #include <QSqlError>
 #include <QTextStream>
+#include <QFileInfo>
+#include <QHeaderView>
 
 #include <QDebug>
 
@@ -50,11 +52,6 @@ Controller::Controller(QTabWidget *_tab_widget, QObject *parent) : QObject(paren
     data_was_load = false;
 }
 
-QStringList Controller::parse_csv_string(const QString &row)
-{
-    return row.split(",");
-}
-
 QVector<ElementType> Controller::get_column_types_of_model(const QAbstractTableModel *model)
 {
     QVector<ElementType> types;
@@ -64,7 +61,7 @@ QVector<ElementType> Controller::get_column_types_of_model(const QAbstractTableM
     {
         for (int j=0; j<model->columnCount(); ++j)
         {
-            ElementType type = get_type(model->index(i,j).data().toString());
+            ElementType type = get_type(model->index(i, j).data().toString());
             if (type > types[j])
             {
                 types[j] = type;
@@ -77,23 +74,35 @@ QVector<ElementType> Controller::get_column_types_of_model(const QAbstractTableM
 
 bool Controller::read_csv(const QStringList &file_names)
 {
-    return true;
-    /*for (int i=0; i<file_names.count(); ++i)
+    table_names.clear();
+
+    for (int i=0; i<file_names.count(); ++i)
     {
-        QFile file(file_names[i]);
+        table_names.push_back(QFileInfo(file_names[i]).completeBaseName());
 
-        if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
-            return false;
+        CsvTableModel* model = new CsvTableModel(this);
 
-        QSqlTableModel* model = new CsvTableModel(this);
-
-        if (!file.atEnd())
+        if (!model->read(file_names[i]))
         {
-            columnNames = splitRow(file.readLine(), sep);
-            columnCount = columnNames.count();
-            columnTypes.fill(ElementType::INT, columnCount);
+            clear();
+
+            return false;
         }
-    }*/
+
+        models.append(model);
+        column_types.push_back(get_column_types_of_model(model));
+
+        //Создание вьюхи
+
+        QTableView* view = new QTableView();
+        view->setModel(model);
+        view->setAlternatingRowColors(true);
+
+        tab_widget->addTab(view, table_names[i]);
+    }
+
+    data_was_load = true;
+    return true;
 }
 
 bool Controller::read_db(const QString &db_name)
@@ -149,9 +158,32 @@ bool Controller::convert_to_csv(const QStringList &selected_names) const
 
             QTextStream fout(&file);
 
+            int j;
+
+            for (j=0; j<models[model_num]->columnCount()-1; ++j)
+            {
+                QString cell = models[model_num]->headerData(j, Qt::Orientation::Horizontal).toString();
+
+                if (cell.indexOf(',') >= 0)
+                {
+                    cell = "\""+cell+"\"";
+                }
+
+                fout << cell << ",";
+            }
+
+            QString cell = models[model_num]->headerData(j, Qt::Orientation::Horizontal).toString();
+
+            if (cell.indexOf(',') >= 0)
+            {
+                cell = "\""+cell+"\"";
+            }
+
+            fout << cell << "\n";
+
             for (int i=0; i<models[model_num]->rowCount(); ++i)
             {
-                for (int j=0; j<models[model_num]->columnCount()-1; ++j)
+                for (j=0; j<models[model_num]->columnCount()-1; ++j)
                 {
                     QString cell = models[model_num]->index(i, j).data().toString();
 
@@ -163,7 +195,7 @@ bool Controller::convert_to_csv(const QStringList &selected_names) const
                     fout << cell << ",";
                 }
 
-                QString cell = models[model_num]->index(i, models[model_num]->columnCount()-1).data().toString();
+                QString cell = models[model_num]->index(i, j).data().toString();
 
                 if (cell.indexOf(',') >= 0)
                 {

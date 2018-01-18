@@ -49,8 +49,6 @@ private:
 
     QVector<QVector<ElementType>> column_types;
 
-    QStringList parse_csv_string(const QString& row);
-
     QVector<ElementType> get_column_types_of_model(const QAbstractTableModel* model);
 };
 

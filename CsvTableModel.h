@@ -1,36 +1,34 @@
-//#ifndef CSVTABLEMODEL_H
-//#define CSVTABLEMODEL_H
+#ifndef CSVTABLEMODEL_H
+#define CSVTABLEMODEL_H
 
-//#include <QAbstractTableModel>
+#include <QAbstractTableModel>
 
+class CsvTableModel : public QAbstractTableModel
+{
+    Q_OBJECT
+public:
+    virtual int rowCount(const QModelIndex &parent = QModelIndex()) const override;
+    virtual int columnCount(const QModelIndex &parent = QModelIndex()) const override;
+    virtual QVariant data(const QModelIndex &index, int role) const override;
+    virtual QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
+    //virtual QModelIndex index(int row, int column, const QModelIndex &parent) const override;
 
+    void reset();
 
+    bool read(const QString& file_name);
 
+    explicit CsvTableModel(QObject *parent = nullptr) : QAbstractTableModel(parent){}
 
-//class CsvTableModel : public QAbstractTableModel
-//{
-//    Q_OBJECT
-//public:
-//    virtual int rowCount(const QModelIndex &parent = QModelIndex()) const override;
-//    virtual int columnCount(const QModelIndex &parent = QModelIndex()) const override;
-//    virtual QVariant data(const QModelIndex &index, int role) const override;
-//    virtual QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
+signals:
 
-//    void reset();
+public slots:
 
-//    explicit CsvTableModel(QObject *parent = nullptr) : QAbstractTableModel(parent){}
-//    bool read(const QString& file_name);
-//    const QVector<ElementType>& get_column_types() const;
-//signals:
+private:
+    QList<QList<QVariant>> table;
+    QList<QVariant> horizontalHeader;
 
-//public slots:
+    static QList<QVariant> split_line(const QByteArray& line, bool* is_full);
 
-//private:
-//    QList<QStringList> table;
-//    QStringList column_names;
-//    QVector<ElementType> column_types;
+};
 
-//    void splitRow(const QByteArray &row, QStringList& result, bool &isFullRow);
-//};
-
-//#endif // CSVTABLEMODEL_H
+#endif // CSVTABLEMODEL_H
