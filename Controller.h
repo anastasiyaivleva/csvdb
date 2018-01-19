@@ -31,7 +31,7 @@ public:
 
     QStringList get_all_table_names() const;
 
-    void clear();
+    void reset();
 
     bool data_was_load;
 

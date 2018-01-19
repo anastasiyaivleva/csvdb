@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include <QMessageBox>
 #include <QFileDialog>
+#include "SelectNamesDialog.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -20,6 +21,8 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->button_settings, &QPushButton::clicked, this, &MainWindow::button_settings_clicked);
 
     controller = new Controller(ui->tab_widget, this); //удалится при очистке главного окна
+
+    working_directory = QDir::current();
 }
 
 MainWindow::~MainWindow()
@@ -28,9 +31,9 @@ MainWindow::~MainWindow()
 }
 
 
-void MainWindow::Error(const QString &message) const
+void MainWindow::Message(const QString &message) const
 {
-    ui->status_bar->showMessage(message);
+    ui->status_bar->showMessage(message, 5000);
 }
 
 
@@ -46,17 +49,21 @@ void MainWindow::button_read_csv_clicked()
         {
             return;
         }
-        controller->clear();
+        controller->reset();
     }
-    QStringList csv_file_names = QFileDialog::getOpenFileNames(this, "Файлы CSV", "", "Файлы CSV (*.csv)");
+    QStringList csv_file_names = QFileDialog::getOpenFileNames(this, "Файлы CSV", working_directory.canonicalPath(), "Файлы CSV (*.csv);;Все файлы (*.*)");
     if (csv_file_names.empty())
     {
         return;
     }
 
-    if (!controller->read_csv(csv_file_names))
+    if (controller->read_csv(csv_file_names))
     {
-        Error("Не удалось прочитать CSV файлы");
+        Message("Все файлы успешно прочитаны");
+    }
+    else
+    {
+        Message("Не удалось прочитать CSV файлы");
     }
 }
 
@@ -72,53 +79,68 @@ void MainWindow::button_read_db_clicked()
         {
             return;
         }
-        controller->clear();
+        controller->reset();
     }
-    QString db_file_name = QFileDialog::getOpenFileName(this, "Файлы DB", "", "Файлы DB (*.sqlite)");
+    QString db_file_name = QFileDialog::getOpenFileName(this, "Файлы DB", working_directory.canonicalPath(), "Файлы DB (*.sqlite);;Все файлы (*.*)");
     if (db_file_name == QString(""))
     {
         return;
     }
 
-    if (!controller->read_db(db_file_name))
+    if (controller->read_db(db_file_name))
     {
-        Error("Не удалось прочитать файл базы данных");
+        Message("Файл базы данных успешно прочитан");
+    }
+    else
+    {
+        Message("Не удалось прочитать файл базы данных");
     }
 }
 
 void MainWindow::button_to_csv_clicked()
 {
-    //Добавить выбор имён файлов
-
     if (!controller->data_was_load)
     {
-        Error("Данные для конвертации не были загружены");
+        Message("Данные не были загружены");
         return;
     }
 
-    if (!controller->convert_to_csv(controller->get_all_table_names()))
+    SelectNamesDialog dialog(controller->get_all_table_names());
+
+    if (controller->convert_to_csv(dialog.get_selected_names()))
     {
-        Error("Возникла ошибка при попытке преобразования данных в CSV");
+        Message("Данные успешно преобразованы в формат CSV");
+    }
+    else
+    {
+        Message("Возникла ошибка при попытке преобразования данных в формат CSV");
     }
 }
 
 void MainWindow::button_to_db_clicked()
 {
-    //Добавить выбор имён файлов
 
     if (!controller->data_was_load)
     {
-        Error("Данные для конвертации не были загружены");
+        Message("Данные для конвертации не были загружены");
         return;
     }
 
-    if (!controller->convert_to_db(controller->get_all_table_names()))
+    SelectNamesDialog dialog(controller->get_all_table_names());
+
+    if (controller->convert_to_db(dialog.get_selected_names()))
     {
-        Error("Возникла ошибка при попытке преобразования данных в DB");
+        Message("Данные успешно преобразованы в формат DB");
+    }
+    else
+    {
+        Message("Возникла ошибка при попытке преобразования данных в формат DB");
     }
 }
 
 void MainWindow::button_settings_clicked()
 {
-    //Сделать
+    QString dir = QFileDialog::getExistingDirectory(nullptr, QString("Выберите рабочую директорию"), working_directory.canonicalPath());
+    if (!dir.isEmpty())
+        working_directory = dir;
 }

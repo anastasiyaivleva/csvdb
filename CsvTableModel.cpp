@@ -22,7 +22,7 @@ int CsvTableModel::columnCount(const QModelIndex &parent) const
 
 QVariant CsvTableModel::data(const QModelIndex &index, int role) const
 {
-    if (role != Qt::DisplayRole)
+    if (role != Qt::DisplayRole || !index.isValid())
     {
         return QVariant();
     }

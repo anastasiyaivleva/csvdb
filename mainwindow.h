@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "Controller.h"
+#include <QDir>
 
 namespace Ui {
 class MainWindow;
@@ -30,8 +31,9 @@ private slots:
 private:
     Ui::MainWindow *ui;
     Controller* controller;
+    QDir working_directory;
 
-    void Error(const QString& message) const;
+    void Message(const QString& message) const;
 };
 
 #endif // MAINWINDOW_H

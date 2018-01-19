@@ -84,7 +84,7 @@ bool Controller::read_csv(const QStringList &file_names)
 
         if (!model->read(file_names[i]))
         {
-            clear();
+            reset();
 
             return false;
         }
@@ -292,7 +292,7 @@ QStringList Controller::get_all_table_names() const
     return table_names;
 }
 
-void Controller::clear()
+void Controller::reset()
 {
     for (int i=0; i<models.count(); ++i)
     {

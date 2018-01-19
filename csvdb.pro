@@ -27,12 +27,15 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
     Controller.cpp \
-    CsvTableModel.cpp
+    CsvTableModel.cpp \
+    SelectNamesDialog.cpp
 
 HEADERS += \
         mainwindow.h \
     Controller.h \
-    CsvTableModel.h
+    CsvTableModel.h \
+    SelectNamesDialog.h
 
 FORMS += \
-        mainwindow.ui
+        mainwindow.ui \
+    SelectNamesDialog.ui
