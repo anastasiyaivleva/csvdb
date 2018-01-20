@@ -10,13 +10,17 @@
 
 int CsvTableModel::rowCount(const QModelIndex &parent) const
 {
-    if (parent.isValid()) return 0;
+    if (parent.isValid())
+        return 0;
+
     return table.count();
 }
 
 int CsvTableModel::columnCount(const QModelIndex &parent) const
 {
-    if (parent.isValid()) return 0;
+    if (parent.isValid())
+        return 0;
+
     return horizontalHeader.count();
 }
 
@@ -97,11 +101,14 @@ bool CsvTableModel::read(const QString &file_name)
 
     bool is_full=false;
 
-    QList<QVariant> splitted_line;
+    QList<QVariant> splitted_line = split_line(csv_file.readLine(), &is_full);
 
     while (!csv_file.atEnd() && !is_full)
     {
-        splitted_line.append(split_line(csv_file.readLine(), &is_full));
+        QByteArray last_cell = splitted_line.last().toByteArray();
+        splitted_line.removeLast();
+
+        splitted_line.append(split_line(last_cell + csv_file.readLine(), &is_full));
     }
 
     if (!is_full)
@@ -116,21 +123,19 @@ bool CsvTableModel::read(const QString &file_name)
     {
         is_full=false;
 
-        splitted_line.clear();
-        QByteArray last_cell;
+        QList<QVariant> splitted_line = split_line(csv_file.readLine(), &is_full);
 
         while (!csv_file.atEnd() && !is_full)
         {
-            if (!splitted_line.isEmpty())
-            {
-                last_cell = splitted_line.last().toByteArray();
-                splitted_line.removeLast();
-            }
-            splitted_line.append(split_line(last_cell+csv_file.readLine(), &is_full));
+            QByteArray last_cell = splitted_line.last().toByteArray();
+            splitted_line.removeLast();
+
+            splitted_line.append(split_line(last_cell + csv_file.readLine(), &is_full));
         }
 
-        if (!is_full)
+        if (!is_full || splitted_line.count() != horizontalHeader.count())
         {
+            horizontalHeader.clear();
             for (int i=0; i<table.count(); ++i)
             {
                 table[i].clear();

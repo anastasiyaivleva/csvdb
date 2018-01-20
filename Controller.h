@@ -23,6 +23,10 @@ class Controller : public QObject
     Q_OBJECT
 public:
     explicit Controller(QTabWidget* _tab_widget, QObject *parent = nullptr);
+    ~Controller();
+
+    void set_working_directory(const QString& work_dir);
+
     bool read_csv(const QStringList& file_names);
     bool read_db(const QString& db_name);
 
@@ -42,14 +46,16 @@ public slots:
 private:
     QTabWidget* tab_widget;
 
+    QString working_directory;
+
     QStringList table_names;
 
     QList<QAbstractTableModel*> models;
     QList<QTableView*> views;
 
-    QVector<QVector<ElementType>> column_types;
+    QSqlDatabase *db;
 
-    QVector<ElementType> get_column_types_of_model(const QAbstractTableModel* model);
+    QVector<QString> get_column_types_of_model(const QAbstractTableModel* model) const;
 };
 
 #endif // CONTROLLER_H

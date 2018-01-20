@@ -29,7 +29,8 @@ SelectNamesDialog::~SelectNamesDialog()
 QStringList SelectNamesDialog::get_selected_names()
 {
     QStringList selected_names;
-    if (exec() == QMessageBox::Cancel)
+
+    if (exec() == QDialog::DialogCode::Rejected)
     {
         return selected_names;
     }

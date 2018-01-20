@@ -30,6 +30,7 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+
     Controller* controller;
     QDir working_directory;
 

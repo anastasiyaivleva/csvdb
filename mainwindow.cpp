@@ -119,7 +119,6 @@ void MainWindow::button_to_csv_clicked()
 
 void MainWindow::button_to_db_clicked()
 {
-
     if (!controller->data_was_load)
     {
         Message("Данные для конвертации не были загружены");
@@ -142,5 +141,9 @@ void MainWindow::button_settings_clicked()
 {
     QString dir = QFileDialog::getExistingDirectory(nullptr, QString("Выберите рабочую директорию"), working_directory.canonicalPath());
     if (!dir.isEmpty())
+    {
         working_directory = dir;
+        controller->set_working_directory(dir);
+    }
 }
+
