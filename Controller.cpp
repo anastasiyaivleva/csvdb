@@ -313,6 +313,8 @@ bool Controller::convert_to_csv(const QStringList &selected_names) const
                 cell = "\"" + cell + "\"";
             }
 
+            fout << cell;
+
             file.close();
         }
     }
