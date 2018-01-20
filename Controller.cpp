@@ -12,7 +12,7 @@
 
 #include <QDebug>
 
-ElementType get_type(QString val)
+ElementType get_type(const QString &val)
 {
     bool ok;
 

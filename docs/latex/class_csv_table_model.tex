@@ -1,0 +1,161 @@
+\hypertarget{class_csv_table_model}{}\section{Csv\+Table\+Model Class Reference}
+\label{class_csv_table_model}\index{Csv\+Table\+Model@{Csv\+Table\+Model}}
+
+
+Класс модели, хранящий в себе данные из C\+S\+V-\/файла  
+
+
+
+
+{\ttfamily \#include $<$Csv\+Table\+Model.\+h$>$}
+
+Inheritance diagram for Csv\+Table\+Model\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_csv_table_model}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_csv_table_model_ace3bbe6a48fe262b451dfe5f33577e96}{Csv\+Table\+Model}} (Q\+Object $\ast$parent=nullptr)
+\begin{DoxyCompactList}\small\item\em Конструктор \end{DoxyCompactList}\item 
+virtual int \mbox{\hyperlink{class_csv_table_model_a91cc21d209c0b9ba8143aa033450bc6e}{row\+Count}} (const Q\+Model\+Index \&parent=Q\+Model\+Index()) const override
+\begin{DoxyCompactList}\small\item\em Возвращает количество строк в таблице \end{DoxyCompactList}\item 
+virtual int \mbox{\hyperlink{class_csv_table_model_a750aedb5638fc8e04e9a6e530a119f91}{column\+Count}} (const Q\+Model\+Index \&parent=Q\+Model\+Index()) const override
+\begin{DoxyCompactList}\small\item\em Возвращает количество столбцов таблицы \end{DoxyCompactList}\item 
+virtual Q\+Variant \mbox{\hyperlink{class_csv_table_model_a86cfc5e15808768e3517f5183e7d5fbb}{data}} (const Q\+Model\+Index \&index, int role) const override
+\begin{DoxyCompactList}\small\item\em Возвращает данные, хранящиеся по указанному индексу \end{DoxyCompactList}\item 
+virtual Q\+Variant \mbox{\hyperlink{class_csv_table_model_ae5790a6d1cbfcfdf7b8b5a4ce4a63748}{header\+Data}} (int section, Qt\+::\+Orientation orientation, int role) const override
+\begin{DoxyCompactList}\small\item\em Возвращает имя выбранного столбца таблицы \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_csv_table_model_a24f940138776feeed8d5884731a2cea4}\label{class_csv_table_model_a24f940138776feeed8d5884731a2cea4}} 
+void \mbox{\hyperlink{class_csv_table_model_a24f940138776feeed8d5884731a2cea4}{reset}} ()
+\begin{DoxyCompactList}\small\item\em Очищает модель \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_csv_table_model_a05af2e7652238643f3f54c964eec2ec2}{read}} (const Q\+String \&file\+\_\+name)
+\begin{DoxyCompactList}\small\item\em Чтение таблицы из файла \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Класс модели, хранящий в себе данные из C\+S\+V-\/файла 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_csv_table_model_ace3bbe6a48fe262b451dfe5f33577e96}\label{class_csv_table_model_ace3bbe6a48fe262b451dfe5f33577e96}} 
+\index{Csv\+Table\+Model@{Csv\+Table\+Model}!Csv\+Table\+Model@{Csv\+Table\+Model}}
+\index{Csv\+Table\+Model@{Csv\+Table\+Model}!Csv\+Table\+Model@{Csv\+Table\+Model}}
+\subsubsection{\texorpdfstring{Csv\+Table\+Model()}{CsvTableModel()}}
+{\footnotesize\ttfamily Csv\+Table\+Model\+::\+Csv\+Table\+Model (\begin{DoxyParamCaption}\item[{Q\+Object $\ast$}]{parent = {\ttfamily nullptr} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+
+
+Конструктор 
+
+
+\begin{DoxyParams}{Parameters}
+{\em parent} & родитель \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_csv_table_model_a750aedb5638fc8e04e9a6e530a119f91}\label{class_csv_table_model_a750aedb5638fc8e04e9a6e530a119f91}} 
+\index{Csv\+Table\+Model@{Csv\+Table\+Model}!column\+Count@{column\+Count}}
+\index{column\+Count@{column\+Count}!Csv\+Table\+Model@{Csv\+Table\+Model}}
+\subsubsection{\texorpdfstring{column\+Count()}{columnCount()}}
+{\footnotesize\ttfamily int Csv\+Table\+Model\+::column\+Count (\begin{DoxyParamCaption}\item[{const Q\+Model\+Index \&}]{parent = {\ttfamily QModelIndex()} }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Возвращает количество столбцов таблицы 
+
+
+\begin{DoxyParams}{Parameters}
+{\em parent} & родитель \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Количество строк 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_csv_table_model_a86cfc5e15808768e3517f5183e7d5fbb}\label{class_csv_table_model_a86cfc5e15808768e3517f5183e7d5fbb}} 
+\index{Csv\+Table\+Model@{Csv\+Table\+Model}!data@{data}}
+\index{data@{data}!Csv\+Table\+Model@{Csv\+Table\+Model}}
+\subsubsection{\texorpdfstring{data()}{data()}}
+{\footnotesize\ttfamily Q\+Variant Csv\+Table\+Model\+::data (\begin{DoxyParamCaption}\item[{const Q\+Model\+Index \&}]{index,  }\item[{int}]{role }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Возвращает данные, хранящиеся по указанному индексу 
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & индекс \\
+\hline
+{\em role} & роль \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Данные, хранящиеся по индексу 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_csv_table_model_ae5790a6d1cbfcfdf7b8b5a4ce4a63748}\label{class_csv_table_model_ae5790a6d1cbfcfdf7b8b5a4ce4a63748}} 
+\index{Csv\+Table\+Model@{Csv\+Table\+Model}!header\+Data@{header\+Data}}
+\index{header\+Data@{header\+Data}!Csv\+Table\+Model@{Csv\+Table\+Model}}
+\subsubsection{\texorpdfstring{header\+Data()}{headerData()}}
+{\footnotesize\ttfamily Q\+Variant Csv\+Table\+Model\+::header\+Data (\begin{DoxyParamCaption}\item[{int}]{section,  }\item[{Qt\+::\+Orientation}]{orientation,  }\item[{int}]{role }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Возвращает имя выбранного столбца таблицы 
+
+
+\begin{DoxyParams}{Parameters}
+{\em section} & номер столбца \\
+\hline
+{\em orientation} & ориентация \\
+\hline
+{\em role} & роль \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Имя столбца 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_csv_table_model_a05af2e7652238643f3f54c964eec2ec2}\label{class_csv_table_model_a05af2e7652238643f3f54c964eec2ec2}} 
+\index{Csv\+Table\+Model@{Csv\+Table\+Model}!read@{read}}
+\index{read@{read}!Csv\+Table\+Model@{Csv\+Table\+Model}}
+\subsubsection{\texorpdfstring{read()}{read()}}
+{\footnotesize\ttfamily bool Csv\+Table\+Model\+::read (\begin{DoxyParamCaption}\item[{const Q\+String \&}]{file\+\_\+name }\end{DoxyParamCaption})}
+
+
+
+Чтение таблицы из файла 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file\+\_\+name} & имя входного файла \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Успешность выполнения операции 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_csv_table_model_a91cc21d209c0b9ba8143aa033450bc6e}\label{class_csv_table_model_a91cc21d209c0b9ba8143aa033450bc6e}} 
+\index{Csv\+Table\+Model@{Csv\+Table\+Model}!row\+Count@{row\+Count}}
+\index{row\+Count@{row\+Count}!Csv\+Table\+Model@{Csv\+Table\+Model}}
+\subsubsection{\texorpdfstring{row\+Count()}{rowCount()}}
+{\footnotesize\ttfamily int Csv\+Table\+Model\+::row\+Count (\begin{DoxyParamCaption}\item[{const Q\+Model\+Index \&}]{parent = {\ttfamily QModelIndex()} }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Возвращает количество строк в таблице 
+
+
+\begin{DoxyParams}{Parameters}
+{\em parent} & родитель \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Количество строк 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Csv\+Table\+Model.\+h\item 
+Csv\+Table\+Model.\+cpp\end{DoxyCompactItemize}

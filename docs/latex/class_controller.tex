@@ -1,0 +1,178 @@
+\hypertarget{class_controller}{}\section{Controller Class Reference}
+\label{class_controller}\index{Controller@{Controller}}
+
+
+Обеспечивает загрузку данных из файлов в формате C\+SV и DB и выгрузку данных в них.  
+
+
+
+
+{\ttfamily \#include $<$Controller.\+h$>$}
+
+Inheritance diagram for Controller\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_controller}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_controller_a2911be3c6cf58c8525aa63d804488b6a}{Controller}} (Q\+Tab\+Widget $\ast$\+\_\+tab\+\_\+widget, Q\+Object $\ast$parent=nullptr)
+\begin{DoxyCompactList}\small\item\em Конструктор класса \mbox{\hyperlink{class_controller}{Controller}}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_controller_a0ab87934c4f7a266cfdb86e0f36bc1b5}\label{class_controller_a0ab87934c4f7a266cfdb86e0f36bc1b5}} 
+\mbox{\hyperlink{class_controller_a0ab87934c4f7a266cfdb86e0f36bc1b5}{$\sim$\+Controller}} ()
+\begin{DoxyCompactList}\small\item\em Деструктор класса \mbox{\hyperlink{class_controller}{Controller}}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_controller_ae788a9a67cbce41929031afcda137b6a}{set\+\_\+working\+\_\+directory}} (const Q\+String \&work\+\_\+dir)
+\begin{DoxyCompactList}\small\item\em Задаёт папку для автоматического сохранения C\+SV и DB файлов. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_controller_ada26f78fcec6b246700604b412622d7c}{read\+\_\+csv}} (const Q\+String\+List \&file\+\_\+names)
+\begin{DoxyCompactList}\small\item\em Читает таблицы из нескольких файлов C\+SV. В случае неудачи всё очищается и появляется сообщение о неудачном чтении файлов \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_controller_ae69865387ccd62da77649c705785c2bc}{read\+\_\+db}} (const Q\+String \&db\+\_\+name)
+\begin{DoxyCompactList}\small\item\em Читает все таблицы из базы данных \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_controller_a07bd206b7ca5fec8c3a6fb093ed9b307}{convert\+\_\+to\+\_\+csv}} (const Q\+String\+List \&selected\+\_\+names) const
+\begin{DoxyCompactList}\small\item\em Преобразует хранящиеся таблицы в несколько файлов C\+SV Преобразуются только выбранные пользователем таблицы \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_controller_a1a767cfe7fa199f78b3043f4cd637c76}{convert\+\_\+to\+\_\+db}} (const Q\+String\+List \&selected\+\_\+names) const
+\begin{DoxyCompactList}\small\item\em Преобразует хранящиеся таблицы в таблицы базы данных Преобразуются только выбранные пользователем таблицы \end{DoxyCompactList}\item 
+Q\+String\+List \mbox{\hyperlink{class_controller_af413760ea8c755a4bff82ff5f070ba17}{get\+\_\+all\+\_\+table\+\_\+names}} () const
+\begin{DoxyCompactList}\small\item\em Возвращает имена всех хранящихся таблиц \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_controller_ab5515748f1b0c82f015e039c817ee5f7}\label{class_controller_ab5515748f1b0c82f015e039c817ee5f7}} 
+void \mbox{\hyperlink{class_controller_ab5515748f1b0c82f015e039c817ee5f7}{reset}} ()
+\begin{DoxyCompactList}\small\item\em Очищает контроллер \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_controller_a16e38246321380621fe90b0a0ece1ef4}\label{class_controller_a16e38246321380621fe90b0a0ece1ef4}} 
+bool {\bfseries data\+\_\+was\+\_\+load}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Обеспечивает загрузку данных из файлов в формате C\+SV и DB и выгрузку данных в них. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_controller_a2911be3c6cf58c8525aa63d804488b6a}\label{class_controller_a2911be3c6cf58c8525aa63d804488b6a}} 
+\index{Controller@{Controller}!Controller@{Controller}}
+\index{Controller@{Controller}!Controller@{Controller}}
+\subsubsection{\texorpdfstring{Controller()}{Controller()}}
+{\footnotesize\ttfamily Controller\+::\+Controller (\begin{DoxyParamCaption}\item[{Q\+Tab\+Widget $\ast$}]{\+\_\+tab\+\_\+widget,  }\item[{Q\+Object $\ast$}]{parent = {\ttfamily nullptr} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Конструктор класса \mbox{\hyperlink{class_controller}{Controller}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+tab\+\_\+widget} & указатель на виджет вывода таблиц \\
+\hline
+{\em parent} & родительский объект \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_controller_a07bd206b7ca5fec8c3a6fb093ed9b307}\label{class_controller_a07bd206b7ca5fec8c3a6fb093ed9b307}} 
+\index{Controller@{Controller}!convert\+\_\+to\+\_\+csv@{convert\+\_\+to\+\_\+csv}}
+\index{convert\+\_\+to\+\_\+csv@{convert\+\_\+to\+\_\+csv}!Controller@{Controller}}
+\subsubsection{\texorpdfstring{convert\+\_\+to\+\_\+csv()}{convert\_to\_csv()}}
+{\footnotesize\ttfamily bool Controller\+::convert\+\_\+to\+\_\+csv (\begin{DoxyParamCaption}\item[{const Q\+String\+List \&}]{selected\+\_\+names }\end{DoxyParamCaption}) const}
+
+
+
+Преобразует хранящиеся таблицы в несколько файлов C\+SV Преобразуются только выбранные пользователем таблицы 
+
+
+\begin{DoxyParams}{Parameters}
+{\em selected\+\_\+names} & выбранные таблицы \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Успешность выполнения функции 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_controller_a1a767cfe7fa199f78b3043f4cd637c76}\label{class_controller_a1a767cfe7fa199f78b3043f4cd637c76}} 
+\index{Controller@{Controller}!convert\+\_\+to\+\_\+db@{convert\+\_\+to\+\_\+db}}
+\index{convert\+\_\+to\+\_\+db@{convert\+\_\+to\+\_\+db}!Controller@{Controller}}
+\subsubsection{\texorpdfstring{convert\+\_\+to\+\_\+db()}{convert\_to\_db()}}
+{\footnotesize\ttfamily bool Controller\+::convert\+\_\+to\+\_\+db (\begin{DoxyParamCaption}\item[{const Q\+String\+List \&}]{selected\+\_\+names }\end{DoxyParamCaption}) const}
+
+
+
+Преобразует хранящиеся таблицы в таблицы базы данных Преобразуются только выбранные пользователем таблицы 
+
+
+\begin{DoxyParams}{Parameters}
+{\em selected\+\_\+names} & выбранные таблицы \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Успешность выполнения функции 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_controller_af413760ea8c755a4bff82ff5f070ba17}\label{class_controller_af413760ea8c755a4bff82ff5f070ba17}} 
+\index{Controller@{Controller}!get\+\_\+all\+\_\+table\+\_\+names@{get\+\_\+all\+\_\+table\+\_\+names}}
+\index{get\+\_\+all\+\_\+table\+\_\+names@{get\+\_\+all\+\_\+table\+\_\+names}!Controller@{Controller}}
+\subsubsection{\texorpdfstring{get\+\_\+all\+\_\+table\+\_\+names()}{get\_all\_table\_names()}}
+{\footnotesize\ttfamily Q\+String\+List Controller\+::get\+\_\+all\+\_\+table\+\_\+names (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Возвращает имена всех хранящихся таблиц 
+
+\begin{DoxyReturn}{Returns}
+Список имён таблиц 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_controller_ada26f78fcec6b246700604b412622d7c}\label{class_controller_ada26f78fcec6b246700604b412622d7c}} 
+\index{Controller@{Controller}!read\+\_\+csv@{read\+\_\+csv}}
+\index{read\+\_\+csv@{read\+\_\+csv}!Controller@{Controller}}
+\subsubsection{\texorpdfstring{read\+\_\+csv()}{read\_csv()}}
+{\footnotesize\ttfamily bool Controller\+::read\+\_\+csv (\begin{DoxyParamCaption}\item[{const Q\+String\+List \&}]{file\+\_\+names }\end{DoxyParamCaption})}
+
+
+
+Читает таблицы из нескольких файлов C\+SV. В случае неудачи всё очищается и появляется сообщение о неудачном чтении файлов 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file\+\_\+names} & имена файлов для чтения \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Успешность выполнения функции 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_controller_ae69865387ccd62da77649c705785c2bc}\label{class_controller_ae69865387ccd62da77649c705785c2bc}} 
+\index{Controller@{Controller}!read\+\_\+db@{read\+\_\+db}}
+\index{read\+\_\+db@{read\+\_\+db}!Controller@{Controller}}
+\subsubsection{\texorpdfstring{read\+\_\+db()}{read\_db()}}
+{\footnotesize\ttfamily bool Controller\+::read\+\_\+db (\begin{DoxyParamCaption}\item[{const Q\+String \&}]{db\+\_\+name }\end{DoxyParamCaption})}
+
+
+
+Читает все таблицы из базы данных 
+
+
+\begin{DoxyParams}{Parameters}
+{\em db\+\_\+name} & имя файла базы данных \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Успешность выполнения функции 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_controller_ae788a9a67cbce41929031afcda137b6a}\label{class_controller_ae788a9a67cbce41929031afcda137b6a}} 
+\index{Controller@{Controller}!set\+\_\+working\+\_\+directory@{set\+\_\+working\+\_\+directory}}
+\index{set\+\_\+working\+\_\+directory@{set\+\_\+working\+\_\+directory}!Controller@{Controller}}
+\subsubsection{\texorpdfstring{set\+\_\+working\+\_\+directory()}{set\_working\_directory()}}
+{\footnotesize\ttfamily void Controller\+::set\+\_\+working\+\_\+directory (\begin{DoxyParamCaption}\item[{const Q\+String \&}]{work\+\_\+dir }\end{DoxyParamCaption})}
+
+
+
+Задаёт папку для автоматического сохранения C\+SV и DB файлов. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em work\+\_\+dir} & строковое представление папки \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Controller.\+h\item 
+Controller.\+cpp\end{DoxyCompactItemize}
