@@ -177,7 +177,7 @@ bool Controller::read_db(const QString &db_name)
 
 bool Controller::convert_to_csv(const QStringList &selected_names) const
 {
-    for (int model_num=0; model_num<models.count()-1; ++model_num)
+    for (int model_num=0; model_num<models.count(); ++model_num)
     {
         if (selected_names.indexOf(table_names[model_num]) >= 0)
         {
@@ -188,11 +188,20 @@ bool Controller::convert_to_csv(const QStringList &selected_names) const
 
             QTextStream fout(&file);
 
-            int i, j;
+            int i, j, index;
 
             for (j=0; j<models[model_num]->columnCount()-1; ++j)
             {
                 QString cell = models[model_num]->headerData(j, Qt::Orientation::Horizontal).toString();
+
+                //все кавычки ячейки заменяются на двойные
+                index = cell.indexOf('\"');
+
+                while (index >= 0)
+                {
+                    cell.insert(index, '\"');
+                    index = cell.indexOf('\"', index + 2);
+                }
 
                 if (cell.indexOf(',') >= 0 || cell.indexOf('\n') >= 0)
                 {
@@ -203,6 +212,15 @@ bool Controller::convert_to_csv(const QStringList &selected_names) const
             }
 
             QString cell = models[model_num]->headerData(j, Qt::Orientation::Horizontal).toString();
+
+            //все кавычки ячейки заменяются на двойные
+            index = cell.indexOf('\"');
+
+            while (index >= 0)
+            {
+                cell.insert(index, '\"');
+                index = cell.indexOf('\"', index + 2);
+            }
 
             if (cell.indexOf(',') >= 0 || cell.indexOf('\n') >= 0)
             {
@@ -219,6 +237,15 @@ bool Controller::convert_to_csv(const QStringList &selected_names) const
                 {
                     QString cell = models[model_num]->index(i, j).data().toString();
 
+                    //все кавычки ячейки заменяются на двойные
+                    index = cell.indexOf('\"');
+
+                    while (index >= 0)
+                    {
+                        cell.insert(index, '\"');
+                        index = cell.indexOf('\"', index + 2);
+                    }
+
                     if (cell.indexOf(',') >= 0 || cell.indexOf('\n') >= 0)
                     {
                         cell = "\"" + cell + "\"";
@@ -228,6 +255,15 @@ bool Controller::convert_to_csv(const QStringList &selected_names) const
                 }
 
                 QString cell = models[model_num]->index(i, j).data().toString();
+
+                //все кавычки ячейки заменяются на двойные
+                index = cell.indexOf('\"');
+
+                while (index >= 0)
+                {
+                    cell.insert(index, '\"');
+                    index = cell.indexOf('\"', index + 2);
+                }
 
                 if (cell.indexOf(',') >= 0 || cell.indexOf('\n') >= 0)
                 {
@@ -244,6 +280,15 @@ bool Controller::convert_to_csv(const QStringList &selected_names) const
             {
                 QString cell = models[model_num]->index(i, j).data().toString();
 
+                //все кавычки ячейки заменяются на двойные
+                index = cell.indexOf('\"');
+
+                while (index >= 0)
+                {
+                    cell.insert(index, '\"');
+                    index = cell.indexOf('\"', index + 2);
+                }
+
                 if (cell.indexOf(',') >= 0 || cell.indexOf('\n') >= 0)
                 {
                     cell = "\"" + cell + "\"";
@@ -253,6 +298,15 @@ bool Controller::convert_to_csv(const QStringList &selected_names) const
             }
 
             cell = models[model_num]->index(i, j).data().toString();
+
+            //все кавычки ячейки заменяются на двойные
+            index = cell.indexOf('\"');
+
+            while (index >= 0)
+            {
+                cell.insert(index, '\"');
+                index = cell.indexOf('\"', index + 2);
+            }
 
             if (cell.indexOf(',') >= 0 || cell.indexOf('\n') >= 0)
             {
