@@ -116,6 +116,9 @@ void Test::test_csv_to_db_to_csv()
     QVERIFY2(flag, "Error in table_names after read db");
 
 
+    QFile("test1_test2_test3.sqlite").remove();
+
+
     flag = controller.convert_to_csv(names);
 
     QVERIFY2(flag, "Error in converting to csv");
@@ -145,6 +148,12 @@ void Test::test_csv_to_db_to_csv()
         }
 
         flag = csv_true_file.atEnd() && csv_test_file.atEnd();
+
+        csv_test_file.close();
+        csv_true_file.close();
+
+        csv_test_file.remove();
+
 
         QVERIFY2(flag, QString("Two files test%1.csv have different size").arg(i).toStdString().c_str());
     }
