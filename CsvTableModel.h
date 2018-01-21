@@ -80,8 +80,8 @@ signals:
 public slots:
 
 private:
-    QList<QList<QVariant>> table; /**< TODO: describe */
-    QList<QVariant> horizontalHeader; /**< TODO: describe */
+    QList<QList<QVariant>> table;
+    QList<QVariant> horizontalHeader;
 
 
     /**

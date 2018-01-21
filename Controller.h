@@ -22,7 +22,7 @@ enum ElementType
 
 /**
  * @brief По элементу возвращает его тип.
- * @param[in] val элемент в виде строки
+ * @param val элемент в виде строки
  * @return Тип элемента
  */
 ElementType get_type(const QString& val);
